@@ -17,6 +17,7 @@ function displayTime() {
 for (let i = startHour; i <= endHour; i++) {
     // Create containing DIV element
     let timeblockWrapper = $('<div>')
+    .attr("data-hour", i)
     .addClass("row");
 
     // Create time slot label
@@ -28,13 +29,14 @@ for (let i = startHour; i <= endHour; i++) {
     // Create text entry area
     let textEntry = $('<textarea>')
     .addClass("textarea")
-    .attr("id", i);
+    .attr("id", i)
+    .val(localStorage.getItem(i))
 
     // Set future, past or present class based on current time
 
     if(i < currentHour) {
         textEntry.addClass("past")
-        textEntry.attr('readonly', 'true');
+        //textEntry.attr('readonly', 'true');
 
     } else if (i == currentHour) {
         textEntry.addClass("present");
@@ -47,7 +49,8 @@ for (let i = startHour; i <= endHour; i++) {
     // Create save button
     let saveButton = $('<button>')
     .attr("data-hour", i)
-    .addClass("saveBtn");
+    .addClass("saveBtn")
+    .on("click", btnEventListener);
 
     // Create icon to hold floppy disk from FontAwesome
     let buttonIcon = $('<i>')
@@ -59,7 +62,25 @@ for (let i = startHour; i <= endHour; i++) {
     saveButton.append(buttonIcon);
     timeblockWrapper.append(saveButton);
     schedule.append(timeblockWrapper);
+};
+
+
+
+
+function btnEventListener(event) {
+
+    let onClick = $(event.currentTarget);
+    let elementId = onClick.attr("data-hour");
+    let description = $(`#${elementId}`);
+    
+    if (description.val() === "") {
+        localStorage.removeItem(elementId);
+
+    } else {
+        localStorage.setItem(elementId, description.val());
+    };
+
+
+
 
 }
-
-
