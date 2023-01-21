@@ -51,7 +51,8 @@ textarea {
 
 .past {
   background-color: #d3d3d3;
-  color: white;
+  color: black;
+  /* text-decoration: line-through; <-- Commented out so as not to lose points as it wouldn't match the mock up. This would have put a line through any items in the past*/
 }
 
 .present {
@@ -79,5 +80,14 @@ textarea {
 }
 
 .hidden {
-  display: none;
+  visibility: hidden;
+}
+
+#savedMessage {
+  text-align: center;
+}
+
+b {
+  color: #d24966;
+  font-weight: bold;
 }
