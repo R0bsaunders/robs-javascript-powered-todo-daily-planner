@@ -17,15 +17,17 @@ function displayTime() {
 for (let i = startHour; i <= endHour; i++) {
     // Create containing DIV element
     let timeblockWrapper = $('<div>')
-    .addClass("time-slot-Wrapper");
+    .addClass("row");
 
     // Create time slot label
     let timeblockHour = moment(`2023-01-01T${i < 10 ? "0" + i : i}:00:00`).format("ha");
     let timeblockLabel = $('<label>')
+    .addClass("hour")
     .text(timeblockHour);
 
     // Create text entry area
     let textEntry = $('<textarea>')
+    .addClass("textarea")
     .attr("id", i);
 
     // Set future, past or present class based on current time
