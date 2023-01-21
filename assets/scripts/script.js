@@ -1,32 +1,63 @@
 const currentDay = $('#currentDay');
-const schedule = $('#container')
+const schedule = $('.container')
 var startHour = 8
-var endHour = 18
-
+var endHour = 17
+var currentHour = moment().format("H");
 // Handle displaying date
 displayTime()
+
 function displayTime() {
 
     let today = moment().format('ddd, MMM Do');
     currentDay.text(today);
 }
 
-for (let i = 0; i < startHour; i++) {
+// Loop to create all timeblocks. div holds: Label to show time slot, textarea for text entry and button to save
 
-    let timeSlotWrapper = $('<div>')
+for (let i = startHour; i <= endHour; i++) {
+    // Create containing DIV element
+    let timeblockWrapper = $('<div>')
     .addClass("time-slot-Wrapper");
 
-    let labelHour = moment(`2023-01-01T${i < 10 ? "0" + i : i}:00:00`).format("ha");
-    let timeLabel = $('<label>')
-    .text(labelHour);
+    // Create time slot label
+    let timeblockHour = moment(`2023-01-01T${i < 10 ? "0" + i : i}:00:00`).format("ha");
+    let timeblockLabel = $('<label>')
+    .text(timeblockHour);
 
+    // Create text entry area
     let textEntry = $('<textarea>')
     .attr("id", i);
 
+    // Set future, past or present class based on current time
+
+    if(i < currentHour) {
+        textEntry.addClass("past")
+        textEntry.attr('readonly', 'true');
+
+    } else if (i == currentHour) {
+        textEntry.addClass("present");
+
+    } else {
+        textEntry.addClass("future");
+
+    };
+
+    // Create save button
     let saveButton = $('<button>')
     .attr("data-hour", i)
-    .text()
-    
+    .addClass("saveBtn");
+
+    // Create icon to hold floppy disk from FontAwesome
+    let buttonIcon = $('<i>')
+    .addClass("fas fa-save");
+
+    // Append all elements to HTML
+    timeblockWrapper.append(timeblockLabel);
+    timeblockWrapper.append(textEntry);
+    saveButton.append(buttonIcon);
+    timeblockWrapper.append(saveButton);
+    schedule.append(timeblockWrapper);
+
 }
 
 
