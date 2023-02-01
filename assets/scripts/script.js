@@ -4,7 +4,7 @@ const schedule = $('.container');
 const savedMessage = $('#savedMessage');
 
 // Declare variables
-var startHour = 8;
+var startHour = 9;
 var endHour = 17;
 var currentHour = moment().format("H");
 

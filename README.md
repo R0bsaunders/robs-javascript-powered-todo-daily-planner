@@ -12,7 +12,7 @@ A live working version can be found here: https://r0bsaunders.github.io/robs-jav
 
 A screenshot of the planner can be found below:
 
-![screenshot-of-planner](/images/screenshot-of-planner.jpg)
+![screenshot-of-planner](/assets/images/screenshot-of-planner.jpg)
 
 To use the planner, simply enter your task into the relevant time slot and click the save icon. If you navigate away form the page the data will persist.
 
